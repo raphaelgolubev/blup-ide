@@ -37,9 +37,9 @@ const mainWindow = new BrowserWindow({
 	url: "views://mainview/index.html",
 	frame: {
 		width: 800,
-		height: 800,
-		x: 200,
-		y: 200,
+		height: 1200,
+		x: 0,
+		y: 10,
 	},
 });
 
