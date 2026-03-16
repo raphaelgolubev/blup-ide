@@ -1,12 +1,19 @@
 {
-  "name": "blup",
-  "module": "index.ts",
-  "type": "module",
-  "private": true,
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
-  }
+	"name": "blup-ide",
+	"version": "1.0.0",
+	"description": "A simple Electrobun app showcasing core features",
+	"dependencies": {
+		"electrobun": "1.16.0"
+	},
+	"devDependencies": {
+		"@types/bun": "latest"
+	},
+	"scripts": {
+		"start": "electrobun run",
+		"dev": "electrobun dev",
+		"dev:watch": "electrobun dev --watch",
+		"build:dev": "bun install && electrobun build",
+		"build:canary": "electrobun build --env=canary",
+		"build:stable": "electrobun build --env=stable"
+	}
 }
