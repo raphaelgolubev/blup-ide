@@ -16,7 +16,7 @@ export default {
 			"src/mainview/index.html": "views/mainview/index.html",
 		},
 		mac: {
-			bundleCEF: false,
+			bundleCEF: true, // safari is horrible
 		},
 		linux: {
 			bundleCEF: false,
