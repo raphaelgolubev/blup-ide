@@ -1,4 +1,9 @@
-import { BrowserWindow, ApplicationMenu } from "electrobun/bun";
+import { BrowserWindow, ApplicationMenu, Screen, type Rectangle } from "electrobun/bun";
+
+interface WindowSize {
+    width: number,
+    height: number
+}
 
 ApplicationMenu.setApplicationMenu([
   {
@@ -31,15 +36,28 @@ ApplicationMenu.setApplicationMenu([
   },
 ]);
 
+function getWindowPosition(size: WindowSize): Rectangle {
+    const screen = Screen.getPrimaryDisplay().bounds;
+
+    return {
+        width: size.width,
+        height: size.height,
+        x: (screen.width / 2) - (size.width / 2),
+        y: (screen.height / 2) - (size.height / 2)
+    }
+}
+
+const customFrame: Rectangle = getWindowPosition({ width: 1200, height: 800 });
+
 // Create the main application window
 const mainWindow = new BrowserWindow({
 	title: "Hello Electrobun!",
 	url: "views://mainview/index.html",
 	frame: {
-		width: 800,
-		height: 1200,
-		x: 0,
-		y: 10,
+		width: customFrame.width,
+		height: customFrame.height,
+		x: customFrame.x,
+		y: customFrame.y,
 	},
 });
 
