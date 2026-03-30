@@ -1,43 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Web Browser</title>
-    <script src="views://mainview/index.js"></script>
-
-    <style>
-        /* Это критично для Electrobun */
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            /* Чтобы не было двойных скроллов */
-            display: flex;
-            flex-direction: column;
-        }
-
-        .webview {
-            flex: 1;
-            /* Заставит вебвью занять всё оставшееся место */
-            width: 100%;
-        }
-    </style>
-</head>
-
-<body>
-    <h1>My Web Browser</h1>
-    <input type="text" id="urlInput" placeholder="Enter URL">
-    <button onclick="loadPage()">Go</button>
-    <button onclick="goBack()">Back</button>
-    <button onclick="goForward()">Forward</button>
-
-    <electrobun-webview class="webview" src="https://electrobun.dev"></electrobun-webview>
-
-</body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blup IDE</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/main.tsx"></script>
+  </body>
 </html>

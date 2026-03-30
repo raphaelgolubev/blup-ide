@@ -1,0 +1,32 @@
+/* Это критично для Electrobun */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    /* Чтобы не было двойных скроллов */
+    display: flex;
+    flex-direction: column;
+    background-color: color(srgb 0.1335 0.1536 0.1789);
+}
+
+.title-bar {
+    display: block;
+    position: fixed;
+    background-color: color(srgb 0.1217 0.1418 0.1671);
+    width: 100%;
+    height: 34px;
+    border-bottom-width: 1px;
+    border-bottom-color: color(srgb 0.2689 0.299 0.3327);
+    border-bottom-style: solid;
+}
+
+.container {
+    position: absolute;
+    top: 36px;
+    width: 100%;
+    height: 100%;
+    background-color: antiquewhite;
+}
