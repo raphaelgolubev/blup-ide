@@ -2,8 +2,8 @@ import type { ElectrobunConfig } from "electrobun";
 
 export default {
 	app: {
-		name: "hello-world",
-		identifier: "helloworld.electrobun.dev",
+		name: "blup-ide",
+		identifier: "com.raphaelgolubev.blup",
 		version: "0.0.1",
 	},
 	build: {
@@ -13,10 +13,11 @@ export default {
 			},
 		},
 		copy: {
-			"src/mainview/index.html": "views/mainview/index.html",
+			"dist/index.html": "views/mainview/index.html",
+			"dist/assets": "views/mainview/assets",
 		},
 		mac: {
-			bundleCEF: true, // safari is horrible
+			bundleCEF: false, // safari is horrible
 		},
 		linux: {
 			bundleCEF: false,
