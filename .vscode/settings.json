@@ -1,0 +1,10 @@
+{
+    "explorer.fileNesting.enabled": false,
+    "explorer.fileNesting.expand": false,
+    "explorer.fileNesting.patterns": {
+        "package.json": "bun.lock, package-lock.json, tsconfig.json, eslint.config.js, .prettierrc, .prettierignore, .npmrc, LICENSE, README.md",
+        "svelte.config.js": "vite.config.ts, tailwind.config.js, postcss.config.js",
+        ".gitignore": ".dockerignore, .env*",
+        "Dockerfile.dev": "compose.dev.yaml, docker-compose.yml"
+    }
+}
