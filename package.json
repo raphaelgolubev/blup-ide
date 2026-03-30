@@ -4,17 +4,21 @@
 	"description": "A simple Electrobun app showcasing core features",
 	"dependencies": {
 		"electrobun": "1.16.0",
+		"monaco-editor": "^0.55.1",
+		"monaco-editor-solid": "^2.0.2",
 		"solid-js": "^1.9.11"
 	},
 	"devDependencies": {
-		"@types/bun": "latest"
+		"@types/bun": "latest",
+		"concurrently": "^9.2.1",
+		"vite": "^8.0.3",
+		"vite-plugin-solid": "^2.11.11"
 	},
 	"scripts": {
-		"start": "electrobun run",
-		"dev": "electrobun dev",
-		"dev:watch": "electrobun dev --watch",
-		"build:dev": "bun install && electrobun build",
-		"build:canary": "electrobun build --env=canary",
-		"build:stable": "electrobun build --env=stable"
+		"start": "vite build && electrobun dev",
+		"dev": "electrobun dev --watch",
+		"dev:hmr": "concurrently \"bun run hmr\" \"bun run start\"",
+		"hmr": "vite --port 5173",
+		"build:canary": "vite build && electrobun build --env=canary"
 	}
 }
