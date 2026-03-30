@@ -1,40 +1,26 @@
-import { BrowserWindow, ApplicationMenu, Screen, type Rectangle } from "electrobun/bun";
+import { BrowserWindow, Screen, ApplicationMenu, type Rectangle, Updater } from "electrobun/bun";
+import { appMenu } from "./appMenu";
+import { type WindowSize } from "./interfaces";
 
-interface WindowSize {
-    width: number,
-    height: number
+const DEV_SERVER_PORT = 5173;
+const DEV_SERVER_URL = `http://localhost:${DEV_SERVER_PORT}`;
+
+// Check if Vite dev server is running for HMR
+async function getMainViewUrl(): Promise<string> {
+	const channel = await Updater.localInfo.channel();
+	if (channel === "dev") {
+		try {
+			await fetch(DEV_SERVER_URL, { method: "HEAD" });
+			console.log(`HMR enabled: Using Vite dev server at ${DEV_SERVER_URL}`);
+			return DEV_SERVER_URL;
+		} catch {
+			console.log(
+				"Vite dev server not running. Run 'bun run dev:hmr' for HMR support.",
+			);
+		}
+	}
+	return "views://mainview/index.html";
 }
-
-ApplicationMenu.setApplicationMenu([
-  {
-    submenu: [{ label: "Quit", role: "quit" }],
-  },
-  {
-    label: "Edit",
-    submenu: [
-      { role: "undo" },
-      { role: "redo" },
-      { type: "separator" },
-      {
-        label: "Custom Menu Item  🚀",
-        action: "custom-action-1",
-        tooltip: "I'm a tooltip",
-      },
-      {
-        label: "Custom menu disabled",
-        enabled: false,
-        action: "custom-action-2",
-      },
-      { type: "separator" },
-      { role: "cut" },
-      { role: "copy" },
-      { role: "paste" },
-      { role: "pasteAndMatchStyle" },
-      { role: "delete" },
-      { role: "selectAll" },
-    ],
-  },
-]);
 
 function getWindowPosition(size: WindowSize): Rectangle {
     const screen = Screen.getPrimaryDisplay().bounds;
@@ -47,18 +33,24 @@ function getWindowPosition(size: WindowSize): Rectangle {
     }
 }
 
+// calculating window size and position
 const customFrame: Rectangle = getWindowPosition({ width: 1200, height: 800 });
+
+// url
+const url = await getMainViewUrl();
 
 // Create the main application window
 const mainWindow = new BrowserWindow({
 	title: "Hello Electrobun!",
-	url: "views://mainview/index.html",
+	url: url,
 	frame: {
 		width: customFrame.width,
 		height: customFrame.height,
 		x: customFrame.x,
 		y: customFrame.y,
 	},
+  titleBarStyle: "hiddenInset"
 });
 
-console.log("Hello Electrobun app started!");
+// set application menu
+ApplicationMenu.setApplicationMenu(appMenu);
