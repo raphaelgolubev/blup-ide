@@ -3,7 +3,7 @@ import solidPlugin from "vite-plugin-solid";
 
 export default defineConfig({
 	plugins: [solidPlugin()],
-	root: "src/mainview",
+	root: "src/main_ui",
 	build: {
 		outDir: "../../dist",
 		emptyOutDir: true,

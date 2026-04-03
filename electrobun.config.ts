@@ -7,17 +7,21 @@ export default {
 		version: "0.0.1",
 	},
 	build: {
-		views: {
-			mainview: {
-				entrypoint: "src/mainview/index.ts",
-			},
+		bun: {
+			entrypoint: "src/bun/index.ts",
+			external: []
 		},
+		// views: {
+		// 	main_ui: {
+		// 		entrypoint: "src/main_ui/index.ts",
+		// 	},
+		// },
 		copy: {
-			"dist/index.html": "views/mainview/index.html",
-			"dist/assets": "views/mainview/assets",
+			"dist/index.html": "views/main_ui/index.html",
+			"dist/assets": "views/main_ui/assets",
 		},
 		mac: {
-			bundleCEF: false, // safari is horrible
+			bundleCEF: false,
 		},
 		linux: {
 			bundleCEF: false,
@@ -25,5 +29,10 @@ export default {
 		win: {
 			bundleCEF: false,
 		},
+		watch: [],
+		watchIgnore: []
 	},
+	runtime: {
+		exitOnLastWindowClosed: false
+	}
 } satisfies ElectrobunConfig;
